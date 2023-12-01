@@ -66,9 +66,6 @@ calc = (line) => {
         }
     }
     let num = first + '' + last;
-    console.log(line);
-    console.dir(list)
-    console.log(num)
     return parseInt(num)
 }
 
