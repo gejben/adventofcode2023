@@ -7,7 +7,7 @@ checkVal = (lines, lineNum, index) => {
         valTwo = parseInt(lines[lineNum][index]);
         val = valOne && isNaN(valTwo);
     } catch (error) {
-        console.log(error);
+        console.error(error);
     }
     return val
 }
@@ -16,18 +16,19 @@ checkVal = (lines, lineNum, index) => {
 checkViableNum = (lines, lineNum, index, length) => {
 
     let itStart = (index == 0 ? 0 : index - 1)
+    let itStop = (index + length == lines[lineNum].length ? index + length : index + length + 1)
 
     if (lineNum > 0) {
-        for (let it = itStart; it < index + length + 1; it++) {
+        for (let it = itStart; it < itStop; it++) {
             if (checkVal(lines, lineNum - 1, it)) return true;
         }
     }
 
-    for (let it = itStart; it < index + length + 1; it++) {
+    for (let it = itStart; it < itStop; it++) {
         if (checkVal(lines, lineNum, it)) return true;
     }
     if (lineNum < lines.length - 1) {
-        for (let it = itStart; it < index + length + 1; it++) {
+        for (let it = itStart; it < itStop; it++) {
             if (checkVal(lines, lineNum + 1, it)) return true;
         }
     }
@@ -41,7 +42,7 @@ poop = (lines) => {
             let str = lines[i]
             let test = str.substring(j)
             let num = parseInt(test)
-            if (num) {
+            if (!isNaN(num)) {
                 let length = num.toString().length;
                 console.log('checknum:' + num)
                 if (checkViableNum(lines, i, j, length)) {
