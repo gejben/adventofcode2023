@@ -59,7 +59,7 @@ testEval = (time,distance) => {
 }
 
 go = () => {
-    let data = fs.readFileSync("data\\input6.txt", { encoding: 'utf-8' })
+    let data = fs.readFileSync("adventofcode2023\\data\\input6.txt", { encoding: 'utf-8' })
     var lines = data.split(/\r?\n/);
 
     let time = [];
